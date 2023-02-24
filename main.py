@@ -10,7 +10,7 @@ date_now = date_now_temp.strftime("%d-%m-%Y")
 date_tomorrow_temp = date_now_temp + timedelta(days=1)
 date_tomorrow = date_tomorrow_temp.strftime("%d-%m-%Y")
 
-print("Today is: ", date_now, "Tomorrow date is: ", date_tomorrow)
+print("Today: ", date_now, "Tomorrow will be: ", date_tomorrow)
 
 # Тройные кавычки позволяют создать одну строчку разделенную на несколько
 HELP = """
@@ -35,14 +35,15 @@ other = []
 
 goodbye: str = "\tСпасибо за использование! До свидания!"
 run = True
-# run_data = True
+run_data = True
 
 while run:
       command = input("Input command: ")
       if command == "help":
           print(HELP)
-      elif command == "show" or "sh":
-          print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
+
+      elif command == "show":
+          print("\nTODAY: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
 
       elif command == "add":
           # while run_data:
@@ -54,22 +55,25 @@ while run:
 
               if data_to_list == date_now:
                   today.append(data_to_list)
+                  print("Index: ", today[0])
                   task = input("Input the name of the task: ")
                   today.append(task)
                   print("The task added to TODAY list.", today)
+
               elif data_to_list == date_tomorrow:
                   tomorrow.append(data_to_list)
                   task = input("Input the name of the task: ")
                   tomorrow.append(task)
                   print("The task added to TOMORROW list.", tomorrow)
-              else:
+              elif data_to_list != date_now or date_tomorrow:
                   other.append(data_to_list)
                   task = input("Input the name of the task: ")
                   other.append(task)
                   print("The task added to OTHER list.", other)
-              print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ",  other)
+              else:
+                  print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
 
-      elif command == "exit" or "q" or "quit":
+      elif command == "exit":
           print("Exit ok")
           break
 
