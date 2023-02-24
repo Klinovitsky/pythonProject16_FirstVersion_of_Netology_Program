@@ -10,6 +10,7 @@ print(HELP)
 # Creation of the empty list
 tasks = []
 
+# Number of tasks the user can input = X = 3 pieces (pcs.)
 x = 0
 while x < 3:
     print("Number of tasks added: ", x)
