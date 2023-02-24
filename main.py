@@ -2,11 +2,15 @@
 
 # Дата в Python не является типом данных, но мы можем импортировать модуль с именем datetime для работы с датами
 import datetime
+from datetime import timedelta
 date_now_temp = datetime.datetime.now()
 # Урезаем до даты, микросекудны нам без надобности
 # print(x.date())
 date_now = date_now_temp.strftime("%d-%m-%Y")
-print("Today is: ", date_now)
+date_tomorrow_temp = date_now_temp + timedelta(days=1)
+date_tomorrow = date_tomorrow_temp.strftime("%d-%m-%Y")
+
+print("Today is: ", date_now, "Tomorrow date is: ", date_tomorrow)
 
 # Тройные кавычки позволяют создать одну строчку разделенную на несколько
 HELP = """
@@ -38,7 +42,7 @@ while run:
       if command == "help":
           print(HELP)
       elif command == "show":
-          print("Today: ", today, "Tomorrow: ", tomorrow, "Other: ", other)
+          print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
 
       elif command == "add":
           # while run_data:
@@ -52,16 +56,18 @@ while run:
                   today.append(data_to_list)
                   task = input("Input the name of the task: ")
                   today.append(task)
-                  print("The task added to TODAY list.")
-                  print(today)
-              elif data_to_list > date_now:
+                  print("The task added to TODAY list.", today)
+              elif data_to_list == date_tomorrow:
+                  tomorrow.append(data_to_list)
+                  task = input("Input the name of the task: ")
+                  tomorrow.append(task)
+                  print("The task added to TOMORROW list.", tomorrow)
+              else:
                   other.append(data_to_list)
                   task = input("Input the name of the task: ")
                   other.append(task)
-                  print("The task added to OTHER list.")
-                  print(other)
-
-              print("Today: ", today, "Tomorrow: ", tomorrow, "Other: ",  other)
+                  print("The task added to OTHER list.", other)
+              print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ",  other)
 
       elif command == "exit":
           print("Exit ok")
