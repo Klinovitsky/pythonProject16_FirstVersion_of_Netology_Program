@@ -11,21 +11,28 @@ print(HELP)
 tasks = []
 
 # Number of tasks the user can input = X = 3 pieces (pcs.)
-x = 0
-while x < 3:
-    print("Number of tasks added: ", x)
-    x = x + 1
+# x = 0
+# while x < 3:
+#     print("Number of tasks added: ", x)
+#     x = x + 1
 
-    command = input("Input command: ")
-    if command == "help":
-        print(HELP)
-    elif command == "show":
-        print(tasks)
-    elif command == "add":
-        task = input("Input the name of the task: ")
-        tasks.append(task)
-        print("The task added.")
-        print(tasks)
+run = True
 
-    else:
-        print("\nUnknown command")
+while run:
+      command = input("Input command: ")
+      if command == "help":
+          print(HELP)
+      elif command == "show":
+          print(tasks)
+      elif command == "add":
+          task = input("Input the name of the task: ")
+          tasks.append(task)
+          print("The task added.")
+          print(tasks)
+      else:
+          print("\nUnknown command")
+          # abort the loop if an unknow command is entered
+          break
+          #run = False
+
+print("\nGoodbye!")
