@@ -16,8 +16,8 @@ print("Today is: ", date_now, "Tomorrow date is: ", date_tomorrow)
 HELP = """
 help - print a reference
 add  - add a task into the list
-show - print all added tasks
-exit - Quit the program"""
+show - print all added tasks (sh - also is ok)
+exit - quit the program (quit / q - also is ok)"""
 print(HELP)
 
 # Creation of the empty list
@@ -41,7 +41,7 @@ while run:
       command = input("Input command: ")
       if command == "help":
           print(HELP)
-      elif command == "show":
+      elif command == "show" or "sh":
           print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
 
       elif command == "add":
@@ -69,9 +69,10 @@ while run:
                   print("The task added to OTHER list.", other)
               print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ",  other)
 
-      elif command == "exit":
+      elif command == "exit" or "q" or "quit":
           print("Exit ok")
           break
+
       else:
           print("Unknown command")
           # abort the loop if an unknow command is entered
