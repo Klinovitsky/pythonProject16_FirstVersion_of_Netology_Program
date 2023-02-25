@@ -6,9 +6,9 @@ from datetime import timedelta
 date_now_temp = datetime.datetime.now()
 # Урезаем до даты, микросекудны нам без надобности
 # print(x.date())
-date_now = date_now_temp.strftime("%d-%m-%Y")
+date_now = date_now_temp.strftime("%d%m%Y")
 date_tomorrow_temp = date_now_temp + timedelta(days=1)
-date_tomorrow = date_tomorrow_temp.strftime("%d-%m-%Y")
+date_tomorrow = date_tomorrow_temp.strftime("%d%m%Y")
 
 print("Today: ", date_now, "Tomorrow will be: ", date_tomorrow)
 
@@ -17,13 +17,11 @@ HELP = """
 help - print a reference
 add  - add a task into the list
 show - print all added tasks (sh - also is ok)
-exit - quit the program (quit / q - also is ok)"""
+exit - quit the program (quit / q - also is ok)\n"""
 print(HELP)
 
-# Creation of the empty list
-tasks = []
-# Task 1. Creation lists
-today = []
+# Task 1. Creation of the empty lists
+today = list()
 tomorrow = []
 other = []
 
@@ -48,30 +46,43 @@ while run:
       elif command == "add":
           # while run_data:
               import datetime as dt
-              date_str = input("Введите дату (dd-mm-yyyy)\n")
-              data_temp = dt.datetime.strptime(date_str, '%d-%m-%Y').date()
-              data_to_list = data_temp.strftime("%d-%m-%Y")
+              date_str = input("Input the date (ddmmyyyy): \n")
+              data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
+              data_to_list = data_temp.strftime("%d%m%Y")
               print("You entered the date: ", data_to_list)
+              task = input("Input the name of the task: ")
 
               if data_to_list == date_now:
-                  today.append(data_to_list)
-                  print("Index: ", today[0])
-                  task = input("Input the name of the task: ")
                   today.append(task)
-                  print("The task added to TODAY list.", today)
-
+                  print("The task added to TODAY list: ", today)
               elif data_to_list == date_tomorrow:
-                  tomorrow.append(data_to_list)
-                  task = input("Input the name of the task: ")
                   tomorrow.append(task)
-                  print("The task added to TOMORROW list.", tomorrow)
-              elif data_to_list != date_now or date_tomorrow:
-                  other.append(data_to_list)
-                  task = input("Input the name of the task: ")
-                  other.append(task)
-                  print("The task added to OTHER list.", other)
+                  print("The task added to TOMORROW list: ", tomorrow)
               else:
-                  print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
+                  other.append(task)
+                  print("The task added to OTHER list: ", other)
+              print(f'The task: "{task}" added')
+              print(HELP)
+
+              # print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
+              # if data_to_list == date_now:
+              #     today.append(data_to_list)
+              #     print("Index: ", today[0])
+              #     task = input("Input the name of the task: ")
+              #     today.append(task)
+              #     print("The task added to TODAY list.", today)
+              # elif data_to_list == date_tomorrow:
+              #     tomorrow.append(data_to_list)
+              #     task = input("Input the name of the task: ")
+              #     tomorrow.append(task)
+              #     print("The task added to TOMORROW list: ", tomorrow)
+              # elif data_to_list != date_now or date_tomorrow:
+              #     other.append(data_to_list)
+              #     task = input("Input the name of the task: ")
+              #     other.append(task)
+              #     print("The task added to OTHER list.", other)
+              # else:
+              #     print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
 
       elif command == "exit":
           print("Exit ok")
