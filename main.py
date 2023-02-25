@@ -14,10 +14,10 @@ print("Today: ", date_now, "Tomorrow will be: ", date_tomorrow)
 
 # Тройные кавычки позволяют создать одну строчку разделенную на несколько
 HELP = """
-help - print a reference
-add  - add a task into the list
-show - print all added tasks (sh - also is ok)
-exit - quit the program (quit / q - also is ok)\n"""
+help        - print a reference
+add         - add a task into the list
+show/sh     - print all added tasks
+exit/quit/q - quit the program \n"""
 print(HELP)
 
 # Task 1. Creation of the empty lists
@@ -40,8 +40,8 @@ while run:
       if command == "help":
           print(HELP)
 
-      elif command == "show":
-          print("\nTODAY: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
+      elif command == "show" or command == "sh":
+          print("\nTODAY: ", today, "\nTomorrow: ", tomorrow, "\nOther: \n", other)
 
       elif command == "add":
           # while run_data:
@@ -84,14 +84,14 @@ while run:
               # else:
               #     print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
 
-      elif command == "exit":
+      elif (command == "exit") or (command == "quit") or (command == "q"):
           print("Exit ok")
           break
 
       else:
           print("Unknown command")
           # abort the loop if an unknow command is entered
-          break
+          print(HELP)
           #run = False
 
 print(goodbye)
