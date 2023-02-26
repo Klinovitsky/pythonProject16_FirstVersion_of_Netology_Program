@@ -1,6 +1,5 @@
 # Netology. First Program
 import random
-
 # Дата в Python не является типом данных, но мы можем импортировать модуль с именем datetime для работы с датами
 import datetime
 
@@ -22,6 +21,10 @@ import datetime
 # c = multiply(5, 5)
 # print(c)
 
+# def print_2():
+#     print("Print something")
+# print_2()
+
 from datetime import timedelta
 date_now_temp = datetime.datetime.now()
 # Урезаем до даты, микросекудны нам без надобности
@@ -31,6 +34,16 @@ date_tomorrow_temp = date_now_temp + timedelta(days=1)
 date_tomorrow = date_tomorrow_temp.strftime("%d%m%Y")
 
 print("Today: ", date_now, "Tomorrow will be: ", date_tomorrow)
+
+# Вынес код по времени в отдельную функцию
+def my_date_input_func():
+    import datetime as dt
+    date_str = input("Input the date to show the task list (ddmmyyyy): \n")
+    data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
+    data_to_list = data_temp.strftime("%d%m%Y")
+    print("You entered the date: ", data_to_list)
+    print("Функция времени отрабатывает, возвращаем: ", data_to_list)
+    return data_to_list
 
 # Тройные кавычки позволяют создать одну строчку разделенную на несколько
 HELP = """
@@ -75,11 +88,14 @@ while run:
           #     if element % 2 == 0:  # ramainder of divistion (остаток от деления)
           #         print(element)
 
-          import datetime as dt
-          date_str = input("Input the date to show the task list (ddmmyyyy): \n")
-          data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
-          data_to_list = data_temp.strftime("%d%m%Y")
-          print("You entered the date: ", data_to_list)
+          # import datetime as dt
+          # date_str = input("Input the date to show the task list (ddmmyyyy): \n")
+          # data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
+          # data_to_list = data_temp.strftime("%d%m%Y")
+          # print("You entered the date: ", data_to_list)
+
+          data_to_list = my_date_input_func()
+          print("Вернули из фунцкии", data_to_list)
 
           # Add "-" before the tasks
           if data_to_list in tasks:
@@ -88,11 +104,16 @@ while run:
           else:
               print('No such date')
       elif command == "add":
-              import datetime as dt
-              date_str = input("Input the date (ddmmyyyy): \n")
-              data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
-              data_to_list = data_temp.strftime("%d%m%Y")
-              print("You entered the date: ", data_to_list)
+              # import datetime as dt
+              # date_str = input("Input the date (ddmmyyyy): \n")
+              # data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
+              # data_to_list = data_temp.strftime("%d%m%Y")
+              # print("You entered the date: ", data_to_list)
+
+              # Remove data processing to function
+              data_to_list = my_date_input_func()
+              print("Вернули из фунцкии", data_to_list)
+
               task = input("Input the name of the task (fro random - no need): ")
 
               if data_to_list == date_now:
@@ -122,32 +143,16 @@ while run:
               print(f'The task: "{task}" added')
               print(HELP)
 
-              # print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
-              # if data_to_list == date_now:
-              #     today.append(data_to_list)
-              #     print("Index: ", today[0])
-              #     task = input("Input the name of the task: ")
-              #     today.append(task)
-              #     print("The task added to TODAY list.", today)
-              # elif data_to_list == date_tomorrow:
-              #     tomorrow.append(data_to_list)
-              #     task = input("Input the name of the task: ")
-              #     tomorrow.append(task)
-              #     print("The task added to TOMORROW list: ", tomorrow)
-              # elif data_to_list != date_now or date_tomorrow:
-              #     other.append(data_to_list)
-              #     task = input("Input the name of the task: ")
-              #     other.append(task)
-              #     print("The task added to OTHER list.", other)
-              # else:
-              #     print("\nToday: ", today, "\nTomorrow: ", tomorrow, "\nOther: ", other)
-
       elif (command == "random") or (command == "r"):
-          import datetime as dt
-          date_str = input("Input the date to show the task list (ddmmyyyy): \n")
-          data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
-          data_to_list = data_temp.strftime("%d%m%Y")
-          print("You entered the date: ", data_to_list)
+
+          data_to_list = my_date_input_func()
+          print("Вернули из фунцкии", data_to_list)
+
+          # import datetime as dt
+          # date_str = input("Input the date to show the task list (ddmmyyyy): \n")
+          # data_temp = dt.datetime.strptime(date_str, '%d%m%Y').date()
+          # data_to_list = data_temp.strftime("%d%m%Y")
+          # print("You entered the date: ", data_to_list)
 
           if data_to_list in tasks:
               tasks[data_to_list].append(RANDOM_TASK)
